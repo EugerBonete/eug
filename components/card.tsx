@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { FiMousePointer } from "react-icons/fi";
 import Image from "next/image";
 
 const Card = () => {

@@ -25,7 +25,20 @@ const projects = [
     description: "stream or watch anime your favorite anime",
     createdAt: "2023",
   },
-
+  {
+    text: "Organizify",
+    href: "https://organizify.vercel.app/",
+    img: "/organizify.png",
+    libs: [
+      <TbBrandNextjs />,
+      <SiPrisma />,
+      <FaRegUserCircle />,
+      <BiLogoTypescript />,
+    ],
+    source: "https://github.com/EugerBonete/organizify",
+    description: "task management solution, organize your daily tasks.",
+    createdAt: "2023",
+  },
   {
     text: "Organizify",
     href: "https://organizify.vercel.app/",
@@ -52,9 +65,9 @@ export default function Work({ heading, subheading }: WorksProps) {
     <div className="space-y-5 py-20">
       <h1 className="font-semibold text-2xl md:text-3xl">{heading}</h1>
       <p className="text-muted-foreground text-sm md:text-base">{subheading}</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {projects.map((project) => (
-          <WorkCard
+          <TiltCard
             source={project.source}
             libs={project.libs}
             heading={project.text}
@@ -77,14 +90,14 @@ interface WorkCardProps {
   source: string;
 }
 
-function WorkCard({
+const TiltCard = ({
   heading,
   subheading,
   img,
   libs,
   href,
   source,
-}: WorkCardProps) {
+}: WorkCardProps) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -93,12 +106,12 @@ function WorkCard({
 
   const rotateX = useTransform(
     mouseYSpring,
-    [-1.5, 1.5],
+    [-0.7, 0.7],
     ["17.5deg", "-17.5deg"]
   );
   const rotateY = useTransform(
     mouseXSpring,
-    [-1.5, 1.5],
+    [-0.7, 0.7],
     ["-17.5deg", "17.5deg"]
   );
 
@@ -124,83 +137,66 @@ function WorkCard({
   };
 
   return (
-    <motion.div
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateY,
-        rotateX,
-        transformStyle: "preserve-3d",
-      }}
-      className="aspect-video sm:aspect-square relative my-5 border-l-2 group cursor-pointer"
-    >
-      <div
+    <div className="grid w-full place-content-center px-4 py-5 text-slate-900 group cursor-pointer">
+      <motion.div
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
         style={{
-          transform: "translateZ(75px)",
+          rotateY,
+          rotateX,
           transformStyle: "preserve-3d",
         }}
-        className="absolute inset-4 grid place-content-center space-y-3 px-2 text-muted-foreground"
+        className="relative h-96 w-72 lg:w-64 rounded-xl bg-gradient-to-br from-primary to-violet-300"
       >
-        <Link
-          href={href}
-          target="_blank"
-          style={{
-            transform: "translateZ(100px)",
-          }}
-        >
-          <Image
-            src={img}
-            alt="Project"
-            height={150}
-            width={150}
-            className="object-cover w-full"
-          />
-        </Link>
-
-        <Link
-          href={href}
-          target="_blank"
+        <div
           style={{
             transform: "translateZ(75px)",
+            transformStyle: "preserve-3d",
           }}
+          className="absolute inset-4 rounded-xl bg-white shadow-lg p-2 flex flex-col justify-between"
         >
-          <h3 className="text-foreground font-semibold group-hover:underline">
-            {heading}
-          </h3>
-        </Link>
+          <Link
+            href={href}
+            style={{
+              transform: "translateZ(100px)",
+            }}
+          >
+            <Image
+              src={img}
+              alt="Project"
+              height={150}
+              width={150}
+              className="object-cover w-full rounded-md group-hover:border-2 border-primary"
+            />
+          </Link>
 
-        <Link
-          href={href}
-          target="_blank"
-          style={{
-            transform: "translateZ(50px)",
-          }}
-        >
-          <p className="text-xs md:text-sm">{subheading}</p>
-        </Link>
+          <Link
+            href={href}
+            style={{
+              transform: "translateZ(100px)",
+            }}
+            className="space-y-5"
+          >
+            <h3 className="text-black text-center font-semibold group-hover:underline">
+              {heading}
+            </h3>
+            <p className="text-muted-foreground">{subheading}</p>
+            <div className="flex gap-2 text-xl">
+              {libs.map((Icon, key) => (
+                <div key={key}>{Icon}</div>
+              ))}
+            </div>
+          </Link>
 
-        <Link
-          href={href}
-          target="_blank"
-          style={{
-            transform: "translateZ(25px)",
-          }}
-        >
-          <div className="flex gap-2 text-xl">
-            {libs.map((Icon, key) => (
-              <div key={key}>{Icon}</div>
-            ))}
-          </div>
-        </Link>
-
-        <Link
-          target="_blank"
-          href={source}
-          className="flex gap-2 text-xl hover:underline hover:text-primary"
-        >
-          <AiOutlineCode /> <span className="text-sm">View Source</span>
-        </Link>
-      </div>
-    </motion.div>
+          <Link
+            target="_blank"
+            href={source}
+            className="flex gap-2 text-xl hover:underline hover:text-primary"
+          >
+            <AiOutlineCode /> <span className="text-sm">View Source</span>
+          </Link>
+        </div>
+      </motion.div>
+    </div>
   );
-}
+};
