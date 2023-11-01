@@ -1,6 +1,7 @@
 import Hero from "@/components/hero";
 import Work from "@/components/work";
 import Link from "next/link";
+import { fullStack } from "./projects/page";
 
 export default function Page() {
   return (
@@ -23,6 +24,7 @@ export default function Page() {
         }
       />
       <Work
+        projects={fullStack}
         heading=" I've been building a lot of things"
         subheading="I switch a lot of companies. It's mostly about the culture."
       />

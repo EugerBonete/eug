@@ -1,68 +1,19 @@
 "use client";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
-import { BiLogoTailwindCss, BiLogoTypescript } from "react-icons/bi";
-import { SiPrisma, SiReactquery } from "react-icons/si";
-import { TbBrandNextjs } from "react-icons/tb";
 import { ReactNode } from "react";
-import { FaRegUserCircle } from "react-icons/fa";
 import Link from "next/link";
 import { AiOutlineCode } from "react-icons/ai";
-
-const projects = [
-  {
-    text: "Shisso",
-    href: "https://shisso.vercel.app/",
-    img: "/shisso.png",
-    libs: [
-      <TbBrandNextjs />,
-      <SiPrisma />,
-      <BiLogoTailwindCss />,
-      <BiLogoTypescript />,
-      <SiReactquery />,
-    ],
-    source: "https://github.com/EugerBonete/shisso",
-    description: "stream or watch anime your favorite anime",
-    createdAt: "2023",
-  },
-  {
-    text: "Organizify",
-    href: "https://organizify.vercel.app/",
-    img: "/organizify.png",
-    libs: [
-      <TbBrandNextjs />,
-      <SiPrisma />,
-      <FaRegUserCircle />,
-      <BiLogoTypescript />,
-    ],
-    source: "https://github.com/EugerBonete/organizify",
-    description: "task management solution, organize your daily tasks.",
-    createdAt: "2023",
-  },
-  {
-    text: "Organizify",
-    href: "https://organizify.vercel.app/",
-    img: "/organizify.png",
-    libs: [
-      <TbBrandNextjs />,
-      <SiPrisma />,
-      <FaRegUserCircle />,
-      <BiLogoTypescript />,
-    ],
-    source: "https://github.com/EugerBonete/organizify",
-    description: "task management solution, organize your daily tasks.",
-    createdAt: "2023",
-  },
-];
 
 interface WorksProps {
   heading?: string;
   subheading?: string;
+  projects: any[];
 }
 
-export default function Work({ heading, subheading }: WorksProps) {
+export default function Work({ heading, subheading, projects }: WorksProps) {
   return (
-    <div className="space-y-5 py-20">
+    <div className="space-y-5 py-10">
       <h1 className="font-semibold text-2xl md:text-3xl">{heading}</h1>
       <p className="text-muted-foreground text-sm md:text-base">{subheading}</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -137,7 +88,7 @@ const TiltCard = ({
   };
 
   return (
-    <div className="grid w-full place-content-center px-4 py-5 text-slate-900 group cursor-pointer">
+    <div className="cursor-pointer">
       <motion.div
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
