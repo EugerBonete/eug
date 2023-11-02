@@ -5,6 +5,9 @@ import { NavItems } from "./nav-items";
 import Logo from "../logo";
 import MobileNav from "./mobile-nav";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { Button } from "../ui/button";
+import { BiLogoGithub } from "react-icons/bi";
 
 export default function Navbar() {
   return (
@@ -24,6 +27,11 @@ export default function Navbar() {
         <span className="md:hidden">
           <MobileNav />
         </span>
+        <Link target="_blank" href="https://github.com/EugerBonete">
+          <Button className="text-xl" size="icon" variant="outline">
+            <BiLogoGithub />
+          </Button>
+        </Link>
         <ModeToggle />
       </div>
     </motion.nav>

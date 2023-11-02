@@ -2,6 +2,7 @@ import Hero from "@/components/hero";
 import Work from "@/components/work";
 import Link from "next/link";
 import { fullStack } from "./projects/page";
+import HoverDevCards from "@/components/certs";
 
 export default function Page() {
   return (
@@ -14,7 +15,8 @@ export default function Page() {
           <p>
             Building{" "}
             <Link
-              href="#"
+              target="_blank"
+              href="https://shisso.vercel.app/"
               className="hover:underline font-semibold text-foreground"
             >
               Shisso
@@ -26,8 +28,16 @@ export default function Page() {
       <Work
         projects={fullStack}
         heading=" I've been building a lot of things"
-        subheading="I switch a lot of companies. It's mostly about the culture."
+        subheading="Here are some of them."
       />
+
+      <div className="space-y-5 pb-10">
+        <h1 className="font-semibold text-2xl md:text-3xl">Certificates</h1>
+        <p className="text-muted-foreground text-sm md:text-base">
+          Some of my certifications in various technologies.
+        </p>
+        <HoverDevCards />
+      </div>
     </div>
   );
 }

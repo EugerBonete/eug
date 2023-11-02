@@ -5,7 +5,7 @@ export default function Logo() {
   return (
     <Link href="/" className="flex items-center gap-2">
       <Avatar>
-        <AvatarImage src="https://avatars.githubusercontent.com/u/91457358?s=400&u=1bac435d94ac5782fd90fd836eab7e201dbcdd1d&v=4" />
+        <AvatarImage src="/profile.png" />
         <AvatarFallback>CN</AvatarFallback>
       </Avatar>
       <p className="font-semibold text-sm md:text-base">Euger Bonete</p>

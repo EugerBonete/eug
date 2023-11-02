@@ -3,7 +3,9 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
 import { ReactNode } from "react";
 import Link from "next/link";
-import { AiOutlineCode } from "react-icons/ai";
+import { AiFillGithub } from "react-icons/ai";
+import { TbBrowser } from "react-icons/tb";
+import { Button } from "./ui/button";
 
 interface WorksProps {
   heading?: string;
@@ -14,9 +16,11 @@ interface WorksProps {
 export default function Work({ heading, subheading, projects }: WorksProps) {
   return (
     <div className="space-y-5 py-10">
-      <h1 className="font-semibold text-2xl md:text-3xl">{heading}</h1>
+      <h1 className="font-semibold text-2xl md:text-3xl text-center sm:text-left">
+        {heading}
+      </h1>
       <p className="text-muted-foreground text-sm md:text-base">{subheading}</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {projects.map((project) => (
           <TiltCard
             source={project.source}
@@ -57,12 +61,12 @@ const TiltCard = ({
 
   const rotateX = useTransform(
     mouseYSpring,
-    [-0.7, 0.7],
+    [-0.9, 0.9],
     ["17.5deg", "-17.5deg"]
   );
   const rotateY = useTransform(
     mouseXSpring,
-    [-0.7, 0.7],
+    [-0.9, 0.9],
     ["-17.5deg", "17.5deg"]
   );
 
@@ -88,7 +92,7 @@ const TiltCard = ({
   };
 
   return (
-    <div className="cursor-pointer">
+    <div className="cursor-pointer space-y-2 flex flex-col">
       <motion.div
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -97,32 +101,35 @@ const TiltCard = ({
           rotateX,
           transformStyle: "preserve-3d",
         }}
-        className="relative h-96 w-72 lg:w-64 rounded-xl bg-gradient-to-br from-primary to-violet-300"
+        className="relative h-[22rem] w-72 lg:w-64 rounded-xl bg-gradient-to-br from-primary to-primary/60"
       >
         <div
           style={{
             transform: "translateZ(75px)",
             transformStyle: "preserve-3d",
           }}
-          className="absolute inset-4 rounded-xl bg-white shadow-lg p-2 flex flex-col justify-between"
+          className="absolute inset-4 rounded-xl bg-white shadow-lg p-2 grid place-content-start"
         >
           <Link
             href={href}
+            target="_blank"
             style={{
               transform: "translateZ(100px)",
             }}
+            className="border-2 border-black rounded-md"
           >
             <Image
               src={img}
               alt="Project"
               height={150}
               width={150}
-              className="object-cover w-full rounded-md group-hover:border-2 border-primary"
+              className="object-cover w-full rounded-md"
             />
           </Link>
 
           <Link
             href={href}
+            target="_blank"
             style={{
               transform: "translateZ(100px)",
             }}
@@ -132,22 +139,27 @@ const TiltCard = ({
               {heading}
             </h3>
             <p className="text-muted-foreground">{subheading}</p>
-            <div className="flex gap-2 text-xl">
+            <div className="flex gap-2 text-xl text-muted-foreground">
               {libs.map((Icon, key) => (
                 <div key={key}>{Icon}</div>
               ))}
             </div>
           </Link>
-
-          <Link
-            target="_blank"
-            href={source}
-            className="flex gap-2 text-xl hover:underline hover:text-primary"
-          >
-            <AiOutlineCode /> <span className="text-sm">View Source</span>
-          </Link>
         </div>
       </motion.div>
+      <div className="justify-center flex-col flex gap-2">
+        <Link target="_blank" href={source}>
+          <Button variant="secondary" className="w-72 lg:w-64 gap-2">
+            <AiFillGithub /> <span className="text-sm">Source</span>
+          </Button>
+        </Link>
+
+        <Link target="_blank" href={href}>
+          <Button className="w-72 lg:w-64 gap-2">
+            <TbBrowser /> <span className="text-sm">Demo</span>
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };

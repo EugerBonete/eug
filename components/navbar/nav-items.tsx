@@ -1,14 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import StaggeredDropDown from "./dropdown";
 import { usePathname } from "next/navigation";
+import { buttonVariants } from "../ui/button";
+import { cn } from "@/lib/utils";
 
 export let tabs = [
   { id: "/", label: "Home" },
   { id: "/projects", label: "Projects" },
+  { id: "/about", label: "About" },
   { id: "/certificates", label: "Certificates" },
 ];
 
@@ -29,24 +30,20 @@ export function NavItems() {
           href={tab.id}
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
-          className={`${
-            activeTab === tab.id ? "" : ""
-          } relative rounded-md px-3 py-2 text-sm font-medium text-foreground outline-sky-400 transition focus-visible:outline-2 hover:bg-accent w-full`}
+          className={cn(
+            buttonVariants({
+              variant: path === tab.id ? "default" : "ghost",
+            }),
+            path === tab.id ? "text-primary-foreground" : "text-foreground",
+            `relative rounded-md px-3 py-2 text-sm font-medium transition focus-visible:outline-2 hover:bg-accent hover:text-primary w-full`
+          )}
           style={{
             WebkitTapHighlightColor: "transparent",
           }}
         >
-          {activeTab === tab.id && (
-            <motion.span
-              layoutId="bubble"
-              className="absolute inset-0 z-10 bg-background dark:bg-white mix-blend-difference rounded-md"
-              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-            />
-          )}
-          {tab.label}
+          <li>{tab.label}</li>
         </Link>
       ))}
-      <StaggeredDropDown />
     </ul>
   );
 }

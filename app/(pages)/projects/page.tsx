@@ -1,17 +1,24 @@
 import Hero from "@/components/hero";
 import Work from "@/components/work";
-import { BiLogoTailwindCss, BiLogoTypescript } from "react-icons/bi";
-import { SiPrisma, SiReactquery } from "react-icons/si";
-import { TbBrandNextjs } from "react-icons/tb";
+import {
+  BiCarousel,
+  BiLogoCss3,
+  BiLogoJavascript,
+  BiLogoTailwindCss,
+  BiLogoTypescript,
+} from "react-icons/bi";
+import { SiFramer, SiPrisma, SiReactquery } from "react-icons/si";
+import { TbBrandNextjs, TbBrandThreejs } from "react-icons/tb";
 import { FaRegUserCircle } from "react-icons/fa";
-
+import { BsPhone } from "react-icons/bs";
+import { AiFillHtml5 } from "react-icons/ai";
 export default function Projects() {
   return (
     <div>
       <Hero
         heading="I've been building a"
-        headingSpan="lot of things."
-        subheading="Come explore the fruits of my labor, from small experiments to full-blown web applications, each project showcases my love for coding and design."
+        headingSpan="lot of things"
+        subheading="from small experiments to full-blown web applications, each project showcases my love for coding and design."
       />
       <Work heading="Fullstack" projects={fullStack} />
       <Work heading="Frontend" projects={frontEnd} />
@@ -39,12 +46,7 @@ export const fullStack = [
     text: "Organizify",
     href: "https://organizify.vercel.app/",
     img: "/organizify.png",
-    libs: [
-      <TbBrandNextjs />,
-      <SiPrisma />,
-      <FaRegUserCircle />,
-      <BiLogoTypescript />,
-    ],
+    libs: [<TbBrandNextjs />, <SiPrisma />, <BiLogoTypescript />],
     source: "https://github.com/EugerBonete/organizify",
     description: "task management solution, organize your daily tasks.",
     createdAt: "2023",
@@ -55,13 +57,13 @@ export const frontEnd = [
   {
     text: "Nekoanime",
     href: "https://nekoanime.vercel.app",
-    img: "/shisso.png",
+    img: "/neko.png",
     libs: [
       <TbBrandNextjs />,
-      <SiPrisma />,
+      <BiCarousel />,
       <BiLogoTailwindCss />,
       <BiLogoTypescript />,
-      <SiReactquery />,
+      <BsPhone />,
     ],
     source: "https://github.com/EugerBonete/Nekoanime",
     description: "collection of animated series and movies",
@@ -70,29 +72,24 @@ export const frontEnd = [
   {
     text: "0 coffee",
     href: "https://ocoffee.netlify.app/",
-    img: "/organizify.png",
-    libs: [
-      <TbBrandNextjs />,
-      <SiPrisma />,
-      <FaRegUserCircle />,
-      <BiLogoTypescript />,
-    ],
+    img: "/coffee.png",
+    libs: [<AiFillHtml5 />, <BiLogoCss3 />, <BiLogoJavascript />],
     source: "https://github.com/EugerBonete/coffee",
-    description: "coffee website landing page",
+    description: "responsive coffee website landing page",
     createdAt: "2023",
   },
   {
-    text: "0 coffee",
-    href: "https://ocoffee.netlify.app/",
-    img: "/organizify.png",
+    text: "Ebp",
+    href: "https://eb-p.vercel.app/",
+    img: "/ebp.png",
     libs: [
-      <TbBrandNextjs />,
-      <SiPrisma />,
-      <FaRegUserCircle />,
+      <SiFramer />,
+      <TbBrandThreejs />,
+      <BiLogoTailwindCss />,
       <BiLogoTypescript />,
     ],
-    source: "https://github.com/EugerBonete/coffee",
-    description: "coffee website landing page",
+    source: "https://github.com/EugerBonete/ebp",
+    description: "portfolio website using react three fiber",
     createdAt: "2023",
   },
 ];
